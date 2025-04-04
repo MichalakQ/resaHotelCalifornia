@@ -27,8 +27,7 @@ closeDatabaseConnection($conn);
 <td><?= $chambre['capacite'] ?></td>
 <td>
 <a href="editChambre.php?id=<?= $chambre['id'] ?>">Modifier</a>
-<a href="deleteChambre.php?id=<?= $chambre['id'] ?>" onclick="return confirm('Êtes-vous
-sûr?')">Supprimer</a>
+<a href="deleteChambre.php?id=<?= $chambre['id'] ?>" onclick="return confirm('Êtes-vous sûr?')">Supprimer</a>
 </td>
 </tr>
 <?php endforeach; ?>
