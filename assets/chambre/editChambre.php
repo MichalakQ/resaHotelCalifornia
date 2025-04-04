@@ -52,3 +52,36 @@ closeDatabaseConnection($conn);
 </head>
 <body>
 <div class="navbar">
+  <a href="../index.php">Accueil</a>
+<a href="listChambres.php">Chambres</a>
+<a href="../clients/listClients.php">Clients</a>
+<a href="../reservations/listReservations.php">Réservations</a>
+</div>
+<div class="container">
+<h1>Modifier une Chambre</h1>
+<?php if (isset($errors) && !empty($errors)): ?>
+<div class="error-message">
+<?php foreach($errors as $error): ?>
+<p><?= $error ?></p>
+<?php endforeach; ?>
+</div>
+<?php endif; ?>
+<form method="post">
+<div class="form-group">
+<label for="numero">Numéro de Chambre:</label>
+<input type="text" id="numero" name="numero"
+value="<?= htmlspecialchars($chambre['numero']) ?>" required>
+</div>
+<div class="form-group">
+<label for="capacite">Capacité (nombre de personnes):</label>
+<input type="number" id="capacite" name="capacite"
+value="<?= $chambre['capacite'] ?>" min="1" required>
+</div>
+<div class="actions">
+<button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+<a href="listChambres.php" class="btn btn-danger">Annuler</a>
+</div>
+</form>
+</div>
+</body>
+</html>
