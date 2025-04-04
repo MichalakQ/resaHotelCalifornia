@@ -12,7 +12,7 @@ closeDatabaseConnection($conn);
 </head>
 <body>
 <h1>Liste des Chambres</h1>
-<a href="create.php">Ajouter une chambre</a>
+<a href="createChambre.php">Ajouter une chambre</a>
 <table border="1" style="width: 60%; min-width: 400px; margin: 0 auto;">
 <tr>
 <th>ID</th>
