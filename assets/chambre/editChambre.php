@@ -52,13 +52,15 @@ crossorigin="anonymous">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="../assets/style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+rel="stylesheet">
 </head>
 <body>
 <div class="navbar">
-  <a href="../index.php">Accueil</a>
-<a href="listChambres.php">Chambres</a>
-<a href="../clients/listClients.php">Clients</a>
-<a href="../reservations/listReservations.php">Réservations</a>
+  <a href="../index.php"><i class="fas fa-bars"></i></a>
+<a href="listChambres.php"><i class="fas fa-house"></i></a>
+<a href="../clients/listClients.php"><i class="fas fa-user"></i></a>
+<a href="../reservations/listReservations.php"><i class="fas fa-calendar"></i></a>
 </div>
 <div class="container">
 <h1>Modifier une Chambre</h1>
