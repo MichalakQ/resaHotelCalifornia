@@ -17,7 +17,7 @@ rel="stylesheet">
 </head>
 <body>
 <h1>Liste des Chambres</h1>
-<a href="createChambre.php">Ajouter une chambre</a>
+<i class="fas fa-file"><a href="createChambre.php">Ajouter une chambre</a></i>
 <table border="1" style="width: 60%; min-width: 400px; margin: 0 auto;">
 <tr>
 <th>ID</th>
