@@ -22,6 +22,7 @@ $chambres = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <title>Liste des Chambres</title>
   </head>
 <body>
+  <?php include_once '../assets/gestionMessage.php'; ?>
   <?php include '../assets/navbar.php'; ?>
   <h1>Liste des Chambres</h1>
   <i class="fas fa-file">
