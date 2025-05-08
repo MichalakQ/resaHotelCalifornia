@@ -25,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <title>Supprimer un client</title>
 </head>
 <body>
+<?php include_once '../assets/gestionMessage.php'; ?>
 <?php include '../assets/navbar.php'; ?>
 <h1>Supprimer un client</h1>
 <form method="post">
