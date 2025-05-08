@@ -16,6 +16,7 @@ crossorigin="anonymous">
   <title>Liste des clients</title>
 </head>
 <body>
+<?php include '../assets/navbar.php'; ?>
 <h1>Liste des clients</h1>
 <a href="createClient.php">Ajouter une client</a>
 <table border="1" style="width: 60%; min-width: 400px; margin: 0 auto;">
