@@ -16,6 +16,7 @@ crossorigin="anonymous">
   <title>Liste des clients</title>
 </head>
 <body>
+<?php include_once '../assets/gestionMessage.php'; ?>
 <?php include '../assets/navbar.php'; ?>
 <h1>Liste des clients</h1>
 <a href="createClient.php">Ajouter une client</a>
