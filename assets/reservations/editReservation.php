@@ -70,6 +70,7 @@ crossorigin="anonymous">
 <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
+<?php include_once '../assets/gestionMessage.php'; ?>
 <?php include '../assets/navbar.php'; ?>
 <div class="navbar">
   <a href="../index.php">Accueil</a>
