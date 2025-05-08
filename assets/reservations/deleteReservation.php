@@ -20,37 +20,30 @@ if ($id <= 0) {
 $conn = openDatabaseConnection();
 
 // Vérifier si la chambre existe
-$stmt = $conn->prepare("SELECT * FROM clients WHERE id = ?");
+$stmt = $conn->prepare("SELECT * FROM reservations WHERE id = ?");
 $stmt->execute([$id]);
-$reservation = $stmt->fetch(PDO::FETCH_ASSOC);
+$reservation= $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$reservation) {
     header("Location: listReservations.php");
     exit;
 }
 
-// Vérifier si le client a  des réservations
-$stmt = $conn->prepare("SELECT COUNT(*) FROM reservations WHERE client_id = ?");
-$stmt->execute([$id]);
-$count = $stmt->fetchColumn();
 
-$hasReservations = ($count > 0);
 
 // Traitement de la suppression si confirmée
 if (isset($_POST['confirm']) && $_POST['confirm'] === 'yes') {
     // Si la chambre a des réservations et que l'utilisateur souhaite les supprimer aussi
     if ($hasReservations && isset($_POST['delete_reservations']) && $_POST['delete_reservations'] === 'yes') {
-        $stmt = $conn->prepare("DELETE FROM reservations WHERE client_id = ?");
-        $stmt->execute([$id]);
+    $stmt = $conn->prepare("DELETE FROM reservations WHERE id = ?");
+    $stmt->execute([$id]);
     } elseif ($hasReservations) {
         // Si la chambre a des réservations mais l'utilisateur ne veut pas les supprimer
-        header("Location: listClients.php?error=1");
+        header("Location: listReservations.php?error=1");
         exit;
     }
     
-    // Supprimer la chambre
-    $stmt = $conn->prepare("DELETE FROM clients WHERE id = ?");
-    $stmt->execute([$id]);
+   
     
     // Rediriger vers la liste des chambres
     header("Location: listClients.php?deleted=1");
