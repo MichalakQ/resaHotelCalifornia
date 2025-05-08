@@ -24,6 +24,7 @@ crossorigin="anonymous">
 <title>Ajouter un client</title>
 </head>
 <body>
+<?php include_once '../assets/gestionMessage.php'; ?>
 <?php include '../assets/navbar.php'; ?>
 <h1>Ajouter un client</h1>
 <form method="post">
