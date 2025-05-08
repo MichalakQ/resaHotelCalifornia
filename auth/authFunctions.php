@@ -43,4 +43,52 @@ function hasRole($required_role) {
  $user_level = isset($role_levels[$user_role]) ? $role_levels[$user_role] : 10;
 return $user_level <= $required_level;
 }
+// Authentifier un employé
+function authenticateUser($username, $password, $conn) {
+ try {
+ error_log("resaHotelCalifornia : Authentification en cours...");
+ // Préparation de la requête avec PDO
+ $query = "SELECT id, username, password, role FROM employes WHERE username = ?";
+ $stmt = $conn->prepare($query);
+ $stmt->execute([$username]);
+
+ // Récupérer les résultats
+ $user = $stmt->fetch(PDO::FETCH_ASSOC);
+ if ($user) {
+ // Vérifier le mot de passe (hash sha-256) avec la valeur dans la base
+ if (hash('sha256', $password) === $user['password']) {
+ initialiserSession();
+ $_SESSION['user_id'] = $user['id'];
+ $_SESSION['username'] = $user['username'];
+ $_SESSION['role'] = $user['role'];
+ error_log("resaHotelCalifornia : Authentification réussie");
+ return true;
+ } else {
+ // vérifier les empreintes des mots de passe
+ echo "BDD :".hash('sha256', $user['password'])."\n<br>";
+ echo "FORM:".hash('sha256', $password);
+ exit;
+ }
+ }
+ return false;
+ } catch (PDOException $e) {
+ // Gérer l'erreur
+ error_log("Erreur d'authentification: " . $e->getMessage());
+ return false;
+ }
+}
+// Déconnecter l'employé
+function logoutUser() {
+ initialiserSession(); // Lancement des opérations de cookie si non existante
+ session_destroy(); // destruction de la session en cours
+ // S'assurer de détruire également le cookie de session
+ if (ini_get("session.use_cookies")) {
+ $params = session_get_cookie_params();
+ setcookie(session_name(), '', time() - 42000,
+ $params["path"], $params["domain"],
+ $params["secure"], $params["httponly"]
+ );
+ }
+}
+
 
