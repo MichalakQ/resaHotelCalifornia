@@ -13,7 +13,7 @@ $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
 // Vérifier si l'ID est valide
 if ($id <= 0) {
-    header("Location: listChambres.php");
+    header("Location: listClients.php");
     exit;
 }
 
@@ -22,10 +22,10 @@ $conn = openDatabaseConnection();
 // Vérifier si la chambre existe
 $stmt = $conn->prepare("SELECT * FROM clients WHERE id = ?");
 $stmt->execute([$id]);
-$chambre = $stmt->fetch(PDO::FETCH_ASSOC);
+$client = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if (!$chambre) {
-    header("Location: listChambres.php");
+if (!$client) {
+    header("Location: listClients.php");
     exit;
 }
 
