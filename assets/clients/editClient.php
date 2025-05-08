@@ -64,6 +64,7 @@ crossorigin="anonymous">
 <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
+<?php include '../assets/navbar.php'; ?>
 <div class="navbar">
   <a href="../index.php">Accueil</a>
 <a href="listChambres.php">Chambres</a>
