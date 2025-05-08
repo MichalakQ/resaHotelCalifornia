@@ -65,7 +65,7 @@ closeDatabaseConnection($conn);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Supprimer une Chambre</title>
+    <title>Supprimer un client </title>
     <link rel="stylesheet" href="../assets/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
@@ -75,13 +75,13 @@ closeDatabaseConnection($conn);
         <h1>Supprimer un client</h1>
         
         <div class="alert alert-warning">
-            <p><i class="fa fa-warning"></i> <strong>Attention :</strong> Vous êtes sur le point de supprimer la chambre numéro <?= htmlspecialchars($chambre['numero']) ?>.</p>
+            <p><i class="fa fa-warning"></i> <strong>Attention :</strong> Vous êtes sur le point de supprimer le client numéro <?= htmlspecialchars($chambre['numero']) ?>.</p>
         </div>
         
         <?php if ($hasReservations): ?>
             <div class="alert alert-danger">
-                <p><i class="fa-solid fa-skull-crossbones"></i><strong>Cette chambre est associée à <?= $count ?> réservation(s).</strong></p>
-                <p>La suppression de cette chambre affectera les réservations existantes.</p>
+                <p><i class="fa-solid fa-skull-crossbones"></i><strong>Ce client est associée à <?= $count ?> réservation(s).</strong></p>
+                <p>La suppression de ce client affectera les réservations existantes.</p>
             </div>
         <?php endif; ?>
         
@@ -89,11 +89,11 @@ closeDatabaseConnection($conn);
             <?php if ($hasReservations): ?>
                 <div class="form-check">
                     <input type="checkbox" id="delete_reservations" name="delete_reservations" value="yes">
-                    <label for="delete_reservations">Supprimer également les <?= $count ?> réservation(s) associée(s) à cette chambre</label>
+                    <label for="delete_reservations">Supprimer également les <?= $count ?> réservation(s) associée(s) à ce client</label>
                 </div>
             <?php endif; ?>
             
-            <p>Êtes-vous sûr de vouloir supprimer cette chambre ?</p>
+            <p>Êtes-vous sûr de vouloir supprimer ce client ?</p>
             
             <div class="actions">
                 <input type="hidden" name="confirm" value="yes">
