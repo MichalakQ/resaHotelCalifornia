@@ -25,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <title>Supprimer une réservation</title>
 </head>
 <body>
+<?php include_once '../assets/gestionMessage.php'; ?>
 <?php include '../assets/navbar.php'; ?>
 <h1>Supprimer une réservation</h1>
 <form method="post">
