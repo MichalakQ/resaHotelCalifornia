@@ -90,5 +90,21 @@ function logoutUser() {
  );
  }
 }
+// Vérification d'accès pour les pages protégées
+function requireRole($role = null) {
+ initialiserSession();
 
+ // Si l'utilisateur n'est pas connecté, rediriger vers la page de login
+ if (!isLoggedIn()) {
+ header("Location: /resaHotelCalifornia/auth/login.php");
+ exit;
+ }
 
+ // Si un rôle est requis et que l'employe ne l'a pas, refuser l'accès
+ if ($role !== null && !hasRole($role)) {
+ $encodedMessage = urlencode("ERREUR : Accès refusé.");
+ header("Location: /index.php?message=$encodedMessage");
+ exit;
+ }
+}
+?>
