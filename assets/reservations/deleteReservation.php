@@ -46,7 +46,7 @@ if (isset($_POST['confirm']) && $_POST['confirm'] === 'yes') {
    
     
     // Rediriger vers la liste des chambres
-    header("Location: listClients.php?deleted=1");
+    header("Location: listReservations.php?deleted=1");
     exit;
 }
 
@@ -58,7 +58,7 @@ closeDatabaseConnection($conn);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Supprimer un client </title>
+    <title>Supprimer une Reservation </title>
     <link rel="stylesheet" href="../assets/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
@@ -67,28 +67,13 @@ closeDatabaseConnection($conn);
 <?php include_once '../assets/gestionMessage.php'; ?>
 <?php include '../assets/navbar.php'; ?>
     <div class="container">
-        <h1>Supprimer un client</h1>
+        <h1>Supprimer une Réservation </h1>
         
         <div class="alert alert-warning">
-            <p><i class="fa fa-warning"></i> <strong>Attention :</strong> Vous êtes sur le point de supprimer le client numéro <?= htmlspecialchars($chambre['numero']) ?>.</p>
+            <p><i class="fa fa-warning"></i> <strong>Attention :</strong> Vous êtes sur le point de supprimer la réservatio numéro <?= htmlspecialchars($reservation['id']) ?>.</p>
         </div>
-        
-        <?php if ($hasReservations): ?>
-            <div class="alert alert-danger">
-                <p><i class="fa-solid fa-skull-crossbones"></i><strong>Ce client est associée à <?= $count ?> réservation(s).</strong></p>
-                <p>La suppression de ce client affectera les réservations existantes.</p>
-            </div>
-        <?php endif; ?>
-        
-        <form method="post">
-            <?php if ($hasReservations): ?>
-                <div class="form-check">
-                    <input type="checkbox" id="delete_reservations" name="delete_reservations" value="yes">
-                    <label for="delete_reservations">Supprimer également les <?= $count ?> réservation(s) associée(s) à ce client</label>
-                </div>
-            <?php endif; ?>
             
-            <p>Êtes-vous sûr de vouloir supprimer ce client ?</p>
+            <p>Êtes-vous sûr de vouloir supprimer cette réservation ?</p>
             
             <div class="actions">
                 <input type="hidden" name="confirm" value="yes">
