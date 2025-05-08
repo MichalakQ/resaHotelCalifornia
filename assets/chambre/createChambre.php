@@ -24,6 +24,7 @@
 </head>
 
 <body>
+  <?php include_once '../assets/gestionMessage.php'; ?>
   <?php include '../assets/navbar.php'; ?>
   <h1>Ajouter une Chambre</h1>
   <form method="post">
