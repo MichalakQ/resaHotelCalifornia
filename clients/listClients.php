@@ -2,7 +2,7 @@
 require_once '../config/db_connect.php';
 $conn = openDatabaseConnection();
 $stmt = $conn->query("SELECT * FROM clients ORDER BY nom");
-$chambres = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$clients= $stmt->fetchAll(PDO::FETCH_ASSOC);
 closeDatabaseConnection($conn);
 ?>
 <!DOCTYPE html>
