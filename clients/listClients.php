@@ -36,8 +36,8 @@ crossorigin="anonymous">
 <td><?= $clients['telephone'] ?></td>
 <td><?= $clients['nombre_personnes'] ?></td>
 <td>
-<a href="editClient.php?id=<?= $chambre['id'] ?>">Modifier</a>
-<a href="deleteClient.php?id=<?= $chambre['id'] ?>" onclick="return confirm('Êtes-vous sûr?')">Supprimer</a>
+<a href="editClient.php?id=<?= $clients['id'] ?>">Modifier</a>
+<a href="deleteClient.php?id=<?= $clients['id'] ?>" onclick="return confirm('Êtes-vous sûr?')">Supprimer</a>
 </td>
 </tr>
 <?php endforeach; ?>
