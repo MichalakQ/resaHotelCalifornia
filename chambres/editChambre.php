@@ -78,14 +78,28 @@ closeDatabaseConnection($conn);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
-  </head>
+    <style>
+                body {
+            background-image: url('../assets/EditChambre.jpg'); /* chemin vers ton image */
+            background-repeat: no-repeat;   /* Ne pas répéter l'image */
+            background-size: cover;         /* L'image couvre tout l'écran */
+            background-position: center;    /* Centre l'image */
+            background-attachment: fixed;   /* L'image reste fixe lors du scroll */
+        }
+                .dore {
+    color: #FFD700; /* Couleur dorée */
+    /* Optionnel : ajouter un léger effet de brillance */
+    text-shadow: 0 0 5px #FFD700, 0 0 10px #FFA500;
+}
+  </style>
+ </head>
 
 <body>
   <?php include_once '../assets/gestionMessage.php'; ?>
   <?php include '../assets/navbar.php'; ?>
   
 <div class="container">
-  <h1>Modifier une Chambre</h1>
+  <h1><p class=dore>Modifier une Chambre</p></h1> 
   <?php if (isset($errors) && !empty($errors)): ?>
 
     <div class="error-message">
@@ -99,13 +113,13 @@ closeDatabaseConnection($conn);
 
 <form method="post">
   <div class="form-group">
-    <label for="numero">Numéro de Chambre:</label>
+    <p class=dore><label for="numero">Numéro de Chambre:</label></p>
     <input type="text" id="numero" name="numero"
     value="<?= htmlspecialchars($chambre['numero']) ?>" required>
   </div>
 
   <div class="form-group">
-    <label for="capacite">Capacité (nombre de personnes):</label>
+    <p class=dore><label for="capacite">Capacité (nombre de personnes):</label></p>
     <input type="number" id="capacite" name="capacite" value="<?= $chambre['capacite'] ?>" min="1" required>
   </div>
 
