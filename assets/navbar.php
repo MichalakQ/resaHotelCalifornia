@@ -5,7 +5,7 @@
 }
 </style>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-danger">
 <div class="container-fluid">
 <a class="navbar-brand" href="/resaHotelCalifornia/index.php"><i class="fas fa-hotel"></i>
 resaHotel California</a>
