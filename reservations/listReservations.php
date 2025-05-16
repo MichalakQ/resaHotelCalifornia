@@ -39,7 +39,7 @@ crossorigin="anonymous">
 <title>Liste des Réservations</title>
 <style>
             body {
-            background-image: url('../assets/listReservation.jpg'); /* chemin vers ton image */
+            background-image: url('../assets/listReservation2.jpg'); /* chemin vers ton image */
             background-repeat: no-repeat;   /* Ne pas répéter l'image */
             background-size: cover;         /* L'image couvre tout l'écran */
             background-position: center;    /* Centre l'image */
