@@ -9,6 +9,12 @@ if (!hasRole("directeur")) {
     exit;
 }
 
+if (!hasRole("directeur")) {
+    $encodedMessage = urlencode("ERREUR : Vous n'avez pas les bonnes permissions.");
+    header("Location: /resaHotelCalifornia/index.php?message=$encodedMessage");
+    exit;
+}
+
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
 // Vérifier si l'ID est valide
@@ -77,7 +83,7 @@ closeDatabaseConnection($conn);
         <h1>Supprimer un client</h1>
         
         <div class="alert alert-warning">
-            <p><i class="fa fa-warning"></i> <strong>Attention :</strong> Vous êtes sur le point de supprimer le client numéro <?= htmlspecialchars($chambre['numero']) ?>.</p>
+            <p><i class="fa fa-warning"></i> <strong>Attention :</strong> Vous êtes sur le point de supprimer le client numéro <?= htmlspecialchars($client['nom']) ?>.</p>
         </div>
         
         <?php if ($hasReservations): ?>

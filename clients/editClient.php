@@ -1,6 +1,13 @@
 <?php
 // Inclusion du fichier de connexion à la base de données
 require_once '../config/db_connect.php';
+require_once '../auth/authFunctions.php';
+
+if (!hasRole("manager")) {
+ $encodedMessage = urlencode("ERREUR : Vous n'avez pas les bonnes permissions.");
+ header("Location: /resaHotelCalifornia/index.php?message=$encodedMessage");
+ exit;
+ }
 // Méthode GET : on recherche la chambre demandée
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 // Vérifier si l'ID est valide
@@ -27,7 +34,7 @@ if (empty($email)) {
     $errors[]="Vous devez rentrer un mail";
 }
 if (empty($telephone)){
-    $errors[]="vous devez inclure un numéro de téléphone"
+    $errors[]="vous devez inclure un numéro de téléphone";
 }
 // Si pas d'erreurs, mettre à jour les données
 if (empty($errors)) {
