@@ -56,22 +56,36 @@
 <head>
     <title>Connexion</title>
     <link rel="stylesheet" href="/assets/style.css">
+     <style>
+                body {
+            background-image: url('../assets/login.jpg'); /* chemin vers ton image */
+            background-repeat: no-repeat;   /* Ne pas répéter l'image */
+            background-size: cover;         /* L'image couvre tout l'écran */
+            background-position: center;    /* Centre l'image */
+            background-attachment: fixed;   /* L'image reste fixe lors du scroll */
+        }
+                .dore {
+    color: #FFD700; /* Couleur dorée */
+    /* Optionnel : ajouter un léger effet de brillance */
+    text-shadow: 0 0 5px #FFD700, 0 0 10px #FFA500;
+}
+  </style>
 </head>
 <body>
     <div class="container">
-        <h2>Connexion</h2>
+      <h2><p class=dore> Connexion </p></h2>
         <?php if ($error): ?>
             <div class="error"><?php echo $error; ?></div>
         <?php endif; ?>
         
         <form method="post" action="">
             <div class="form-group">
-                <label for="username">Identifiant employé:</label>
+                <p class=dore> <label for="username">Identifiant employé:</label></p>
                 <input type="text" name="username" id="username" required>
             </div>
             
             <div class="form-group">
-                <label for="password">Mot de passe:</label>
+                <p class=dore> <label for="password">Mot de passe:</label> </p>
                 <input type="password" name="password" id="password" required>
             </div>
             
