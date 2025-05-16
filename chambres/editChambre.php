@@ -2,6 +2,13 @@
 // Inclusion du fichier de connexion à la base de données
 
 require_once '../config/db_connect.php';
+require_once '../auth/authFunctions.php';
+
+if (!hasRole("manager")) {
+ $encodedMessage = urlencode("ERREUR : Vous n'avez pas les bonnes permissions.");
+ header("Location: /resaHotelCalifornia/index.php?message=$encodedMessage");
+ exit;
+ }
 
 // Méthode GET : on recherche la chambre demandée
 

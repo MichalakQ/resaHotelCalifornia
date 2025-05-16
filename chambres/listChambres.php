@@ -3,6 +3,14 @@
 //Appelle le fichier PHP et importe les champs de chambre
   
 require_once '../config/db_connect.php';
+require_once '../auth/authFunctions.php';
+
+if (!hasRole("standard")) {
+ $encodedMessage = urlencode("ERREUR : Vous n'avez pas les bonnes permissions.");
+ header("Location: /resaHotelCalifornia/index.php?message=$encodedMessage");
+ exit;
+ }
+
   $conn = openDatabaseConnection();
   $stmt = $conn->query("SELECT * FROM chambres ORDER BY numero");
 
@@ -20,14 +28,34 @@ $chambres = $stmt->fetchAll(PDO::FETCH_ASSOC);
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
     <title>Liste des Chambres</title>
+    <style>
+            body {
+            background-image: url('../assets/listChambre.jpg'); /* chemin vers ton image */
+            background-repeat: no-repeat;   /* Ne pas répéter l'image */
+            background-size: cover;         /* L'image couvre tout l'écran */
+            background-position: center;    /* Centre l'image */
+            background-attachment: fixed;   /* L'image reste fixe lors du scroll */
+        }
+                .dore {
+    color: #FFD700; /* Couleur dorée */
+    /* Optionnel : ajouter un léger effet de brillance */
+    text-shadow: 0 0 5px #FFD700, 0 0 10px #FFA500;
+}
+table td {
+    color: rgb(255, 17, 0);
+}
+table th {
+    color:rgb(0, 255, 242);
+}
+    </style>
   </head>
 <body>
   <?php include_once '../assets/gestionMessage.php'; ?>
   <?php include '../assets/navbar.php'; ?>
-  <h1>Liste des Chambres</h1>
-  <i class="fas fa-file">
-    <a href="createChambre.php">Ajouter une chambre</a>
-  </i>
+  <h1><p class="dore">Liste des Chambres</h1></p>
+<a href="createChambre.php" class="dore">
+  <i class="fas fa-bed"></i> <br>Ajouter une chambre
+</a>
   <table border="1" style="width: 60%; min-width: 400px; margin: 0 auto;">
   <tr>
     <th>ID</th>
