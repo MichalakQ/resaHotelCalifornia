@@ -69,18 +69,27 @@ crossorigin="anonymous">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="../assets/style.css">
+    <style>
+                body {
+            background-image: url('../assets/EditClients.jpg'); /* chemin vers ton image */
+            background-repeat: no-repeat;   /* Ne pas répéter l'image */
+            background-size: cover;         /* L'image couvre tout l'écran */
+            background-position: center;    /* Centre l'image */
+            background-attachment: fixed;   /* L'image reste fixe lors du scroll */
+        }
+                .red {
+    color:rgb(255, 0, 0.6); 
+    
+    text-shadow: 0 0 5px rgb(0, 17, 255), 0 0 10px rgb(0, 238, 255);
+}
+  </style>
 </head>
 <body>
 <?php include_once '../assets/gestionMessage.php'; ?>
 <?php include '../assets/navbar.php'; ?>
-<div class="navbar">
-  <a href="../index.php">Accueil</a>
-<a href="listChambres.php">Chambres</a>
-<a href="../clients/listClients.php">Clients</a>
-<a href="../reservations/listReservations.php">Réservations</a>
-</div>
+
 <div class="container">
-<h1>Modifier une Chambre</h1>
+<h1><p class=red> Modifier une Chambre </p></h1>
 <?php if (isset($errors) && !empty($errors)): ?>
 <div class="error-message">
 <?php foreach($errors as $error): ?>
@@ -90,13 +99,13 @@ crossorigin="anonymous">
 <?php endif; ?>
 <form method="post">
 <div class="form-group">
-<label for="nom">Nom:</label>
-<input type="text" id="nom" name="nom" required>
-<label for="nombre_personnes">Nombre de résidents:</label>
+<p class=red> <label for="nom">Nom:</label> </p>
+<p class=red> <input type="text" id="nom" name="nom" required> </p>
+<p class=red> <label for="nombre_personnes">Nombre de résidents:</label> </p>
 <input type="number" id="nombre_personnes" name="nombre_personnes" min="1" required>
-<label for="email">email:</label>
+<p class=red> <label for="email">email:</label> </p>
 <input type="text" id="email" name="email" required>
-<label for="telephone">telephone:</label>
+<p class=red> <label for="telephone">telephone:</label> </p>
 <input type="text" id="telephone" name="telephone" required>
 </div>
 
