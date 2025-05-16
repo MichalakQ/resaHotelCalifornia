@@ -17,6 +17,7 @@
         $password = $_POST['password'] ?? '';
 
         $conn = openDatabaseConnection();
+        
            
         if (authenticateUser($username, $password, $conn)) {
             // Vérifier si le rôle est déjà défini dans la session
