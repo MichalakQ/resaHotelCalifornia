@@ -9,6 +9,12 @@ if (!hasRole("directeur")) {
     exit;
 }
 
+if (!hasRole("directeur")) {
+    $encodedMessage = urlencode("ERREUR : Vous n'avez pas les bonnes permissions.");
+    header("Location: /resaHotelCalifornia/index.php?message=$encodedMessage");
+    exit;
+}
+
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
 // Vérifier si l'ID est valide
@@ -34,14 +40,9 @@ if (!$reservation) {
 // Traitement de la suppression si confirmée
 if (isset($_POST['confirm']) && $_POST['confirm'] === 'yes') {
     // Si la chambre a des réservations et que l'utilisateur souhaite les supprimer aussi
-    if ($hasReservations && isset($_POST['delete_reservations']) && $_POST['delete_reservations'] === 'yes') {
     $stmt = $conn->prepare("DELETE FROM reservations WHERE id = ?");
     $stmt->execute([$id]);
-    } elseif ($hasReservations) {
-        // Si la chambre a des réservations mais l'utilisateur ne veut pas les supprimer
-        header("Location: listReservations.php?error=1");
-        exit;
-    }
+
     
    
     
@@ -75,6 +76,7 @@ closeDatabaseConnection($conn);
             
             <p>Êtes-vous sûr de vouloir supprimer cette réservation ?</p>
             
+                <form method="post">
             <div class="actions">
                 <input type="hidden" name="confirm" value="yes">
                 <button type="submit" class="btn btn-danger">Confirmer la suppression</button>

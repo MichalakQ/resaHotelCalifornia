@@ -1,6 +1,14 @@
 <?php
 // Inclusion du fichier de connexion à la base de données
 require_once '../config/db_connect.php';
+require_once '../auth/authFunctions.php';
+
+if (!hasRole("standard") && !hasRole("directeur")&&!hasRole("responsable")) {
+ $encodedMessage = urlencode("ERREUR : Vous n'avez pas les bonnes permissions.");
+ header("Location: /resaHotelCalifornia/index.php?message=$encodedMessage");
+ exit;
+ }
+
 // Fonction pour formater les dates
 function formatDate($date) {
 $timestamp = strtotime($date);
@@ -29,6 +37,27 @@ rel="stylesheet">
 integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
 crossorigin="anonymous">
 <title>Liste des Réservations</title>
+<style>
+            body {
+            background-image: url('../assets/listReservation.jpg'); /* chemin vers ton image */
+            background-repeat: no-repeat;   /* Ne pas répéter l'image */
+            background-size: cover;         /* L'image couvre tout l'écran */
+            background-position: center;    /* Centre l'image */
+            background-attachment: fixed;   /* L'image reste fixe lors du scroll */
+        }
+                .dore {
+    color: #FFD700; /* Couleur dorée */
+    /* Optionnel : ajouter un léger effet de brillance */
+    text-shadow: 0 0 5px #FFD700, 0 0 10px #FFA500;
+}
+table td {
+    color: rgb(255, 17, 0);
+    font-weight: bold;
+}
+table th {
+    color:rgb(0, 255, 242);
+}
+    </style>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Lien vers la feuille de style externe -->
@@ -38,7 +67,7 @@ crossorigin="anonymous">
 <?php include_once '../assets/gestionMessage.php'; ?>
 <?php include '../assets/navbar.php'; ?>
 <div class="container">
-<h1>Liste des Réservations</h1>
+<h1><p class=dore> Liste des Réservations</h1>
 <div class="actions">
 <a href="createReservation.php" class="btn btn-success">Nouvelle Réservation</a>
 </div>

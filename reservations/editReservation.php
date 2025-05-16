@@ -1,6 +1,13 @@
 <?php
 // Inclusion du fichier de connexion à la base de données
 require_once '../config/db_connect.php';
+require_once '../auth/authFunctions.php';
+
+if (!hasRole("manager")) {
+ $encodedMessage = urlencode("ERREUR : Vous n'avez pas les bonnes permissions.");
+ header("Location: /resaHotelCalifornia/index.php?message=$encodedMessage");
+ exit;
+ }
 // Méthode GET : on recherche la chambre demandée
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 // Vérifier si l'ID est valide
@@ -17,24 +24,32 @@ $email=$_POST['email'];
 $telephone=$_POST['telephone'];
 // Validation des données
 $errors = [];
-if (empty($client)) {
+
+if (empty($nom)) {
 $errors[] = "Veuillez assigner un client.";
 }
-if (empty($contact)) {
+
+if (empty($email)) {
 $errors[] = "Veuillez entrer un moyen de contact.";
 }
+
 if ($nombre_personnes <= 0) {
 $errors[] = "Le nombre de personnes doit être positif.";
 }
+
 if (empty($chambre)) {
     $errors[]="Vous devez rentrer une chambre";
 }
+
 if (empty($date_depart)){
-    $errors[]="vous devez inclure une date de départ"
+    $errors[]="vous devez inclure une date de départ";
 }
+
+
 if (empty($date_arrivee)){
-    $errors[]="vous devez inclure une date d'arrivée."
+    $errors[]="vous devez inclure une date d'arrivée.";
 }
+
 // Si pas d'erreurs, mettre à jour les données
 if (empty($errors)) {
 $stmt = $conn->prepare("UPDATE reservations SET client = ?, nombre_personnes = ?, contact=?, chambre=?, date_arrivee=?, date_depart=?  WHERE id = ?");
@@ -47,13 +62,11 @@ exit;
 // Méthode GET : Récupérer les données du clients
 $stmt = $conn->prepare("SELECT * FROM reservations WHERE id = ?");
 $stmt->execute([$id]);
-$chambre = $stmt->fetch(PDO::FETCH_ASSOC);
-// Si la réservation n'existe pas, rediriger
+$reservation = $stmt->fetch(PDO::FETCH_ASSOC);
 if (!$reservation) {
-header("Location: listReservations.php");
-exit;
-}
-}
+    header("Location: listReservations.php");
+    exit;
+}}
 closeDatabaseConnection($conn);
 ?>
 <!DOCTYPE html>
@@ -93,8 +106,8 @@ crossorigin="anonymous">
 <input type="text" id="nom" name="nom" required>
 <label for="nombre_personnes">Nombre de résidents:</label>
 <input type="number" id="nombre_personnes" name="nombre_personnes" min="1" required>
-<label for="email">contact:</label>
-<input type="text" id="contact" name="contact" required>
+<label for="email">email:</label>
+<input type="text" id="email" name="email" required>
 <label for="chambre">chambre:</label>
 <input type="number" id="chambre" name="chambre" required>
 <label for="date_depart">date de départ:</label>
