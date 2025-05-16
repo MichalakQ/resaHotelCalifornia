@@ -53,9 +53,12 @@ crossorigin="anonymous">
 table td {
     color: rgb(255, 17, 0);
     font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.6);
 }
 table th {
     color:rgb(0, 255, 242);
+    background-color:rgba(0, 0, 0, 0.6);
+    
 }
     </style>
 <meta charset="UTF-8">
