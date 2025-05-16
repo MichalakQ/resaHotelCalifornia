@@ -1,3 +1,10 @@
+
+<style>
+.navbar-nav .nav-link:hover {
+    color: #FFD700 !important;
+}
+</style>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 <div class="container-fluid">
 <a class="navbar-brand" href="/resaHotelCalifornia/index.php"><i class="fas fa-hotel"></i>
@@ -23,6 +30,14 @@ target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="
 <li class="nav-item">
 <a class="nav-link" href="/resaHotelCalifornia/reservations/listReservations.php">
 <i class="fas fa-table"></i>Réservations</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="/resaHotelCalifornia/auth/login.php">
+<i class="fas fa-table"></i>Connexion</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="/resaHotelCalifornia/auth/logout.php">
+<i class="fas fa-table"></i>Déconnexion</a>
 </li>
 </ul>
 </div>
